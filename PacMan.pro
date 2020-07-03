@@ -13,16 +13,19 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        pcmainwindow.cpp \
-    pacman.cpp \
-    gamemap.cpp \
-    character.cpp \
-    picture.cpp \
-    collider.cpp
+    model/character.cpp \
+    model/collider.cpp \
+    model/gamemap.cpp \
+    model/pacman.cpp \
+    model/picture.cpp \
+    view/pcmainwindow.cpp
 
-HEADERS  += pcmainwindow.h \
-    pacman.h \
-    gamemap.h \
-    character.h \
-    picture.h \
-    collider.h
+HEADERS  += model/character.h \
+    model/collider.h \
+    model/gamemap.h \
+    model/pacman.h \
+    model/picture.h \
+    model/character.h \
+    model/picture.h \
+    model/collider.h \
+    view/pcmainwindow.h

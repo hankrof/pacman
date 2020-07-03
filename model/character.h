@@ -23,7 +23,7 @@ typedef enum
     U_Comptuer
 }User;
 
-/*This could be a user or computer*/
+/* This could be a user or computer */
 class Character
 {
 public:
@@ -51,5 +51,5 @@ private:
     LookDirection               lastDirection;
 };
 
-#endif // CHARACTER
+#endif //CHARACTER_H
 

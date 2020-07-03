@@ -2,7 +2,7 @@
 #define PCMAINWINDOW_H
 
 #include <QMainWindow>
-#include "pacman.h"
+#include "model/pacman.h"
 
 class PcMainWindow : public QMainWindow
 {
