@@ -31,3 +31,29 @@ TEST(Character, Position2)
     ASSERT_EQ(c.position().y(), 0);
 }
 
+TEST(Character, MovePositionFromOriginalPoint)
+{
+    Character c;
+    c.position() = QPoint(0, 0);
+    c.move(QPoint(10, 15));
+    ASSERT_EQ(c.position(), QPoint(10, 15));
+}
+
+TEST(Character, MovePositionFromMinusPoint)
+{
+    Character c;
+    c.position() = QPoint(-5, -7);
+    c.move(QPoint(10, 15));
+    ASSERT_EQ(c.position(), QPoint(5, 8));
+}
+
+TEST(Character, MovePositionFor10Times)
+{
+    Character c;
+    c.position() = QPoint(-5, -3);
+    for(int i = 0; i < 10; i++)
+    {
+        c.move(QPoint(2, 3));
+    }
+    ASSERT_EQ(c.position(), QPoint(15, 27));
+}

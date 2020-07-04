@@ -25,14 +25,6 @@ User Character::user() const
     return m_user;
 }
 
-Character& Character::move(int xOffset,int yOffset)
-{
-    m_pos.setX(m_pos.x() + xOffset);
-    m_pos.setY(m_pos.y() + yOffset);
-//  m_lookAt = calcDirection(xOffset,yOffset);
-    return *this;
-}
-
 Character& Character::move(const QPoint &offset)
 {
     m_pos = m_pos + offset;

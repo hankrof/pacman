@@ -31,7 +31,6 @@ public:
     QPoint&                     position();
     QPoint                      position() const;
     User                        user() const;
-    Character&                  move(int xOffset,int yOffset);
     Character&                  move(const QPoint &offset);
     LookDirection               direction() const;
     Character&                  setDirection(LookDirection newDirection);
