@@ -5,8 +5,9 @@
 #include <cmath>
 
 CPacManGame::CPacManGame(int width,int height,int mapRows,int mapCols,int blockSize)
-    : player(U_Player,30,30), collider(&map)
+    : player(), collider(&map)
 {
+    player.position() = QPoint(30, 30);
     setWindowSize(width,height);
     setPictureSize(blockSize);
     setMapSize(mapRows,mapCols);
@@ -49,42 +50,42 @@ void CPacManGame::movePlayer(const QPoint &offset)
     if(offset.x() == 0 && offset.y() == 0)
         return;
     player.setDirection(player.calcDirection(offset));
-    if(collider.collide(blockSize,player.pos()+offset) == nullptr)
+    if(collider.collide(blockSize,player.position()+offset) == nullptr)
     {
         moveFlag = true;
         player.move(offset);
     }
     else //try smoothly move
     {
-        int xldiff = abs(player.x() / blockSize * blockSize
-                        - player.x());
-        int xrdiff = abs(ceil((double)player.x() / blockSize) * blockSize
-                        - player.x());
-        int yudiff = abs(ceil((double)player.y() / blockSize) * blockSize
-                        - player.y());
-        int yddiff = abs(player.y() / blockSize * blockSize
-                        - player.y());
+        int xldiff = abs(player.position().x() / blockSize * blockSize
+                        - player.position().x());
+        int xrdiff = abs(ceil((double)player.position().x() / blockSize) * blockSize
+                        - player.position().x());
+        int yudiff = abs(ceil((double)player.position().y() / blockSize) * blockSize
+                        - player.position().y());
+        int yddiff = abs(player.position().y() / blockSize * blockSize
+                        - player.position().y());
         //move up smoothly
         if(xldiff < 15 && offset.y() < 0)
         {
             QPoint p;
-            p.setX(player.x() / blockSize * blockSize);
-            p.setY(player.y() + offset.y());
+            p.setX(player.position().x() / blockSize * blockSize);
+            p.setY(player.position().y() + offset.y());
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
         }
         else if(xrdiff < 15 && offset.y() < 0)
         {
             QPoint p;
-            p.setX(ceil((double)player.x() / blockSize) * blockSize);
-            p.setY(player.y() + offset.y());
+            p.setX(ceil((double)player.position().x() / blockSize) * blockSize);
+            p.setY(player.position().y() + offset.y());
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
 
         }
@@ -92,75 +93,75 @@ void CPacManGame::movePlayer(const QPoint &offset)
         if(xldiff < 15 && offset.y() > 0)
         {
             QPoint p;
-            p.setX(player.x() / blockSize * blockSize);
-            p.setY(player.y() + offset.y());
+            p.setX(player.position().x() / blockSize * blockSize);
+            p.setY(player.position().y() + offset.y());
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
         }
         else if(xrdiff < 15 && offset.y() > 0)
         {
             QPoint p;
-            p.setX(ceil((double)player.x() / blockSize) * blockSize);
-            p.setY(player.y() + offset.y());
+            p.setX(ceil((double)player.position().x() / blockSize) * blockSize);
+            p.setY(player.position().y() + offset.y());
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
         }
         //move left smoothly
         if(yudiff < 15 && offset.x() < 0)
         {
             QPoint p;
-            p.setX(player.x() + offset.x());
-            p.setY(ceil((double)player.y() / blockSize) * blockSize);
+            p.setX(player.position().x() + offset.x());
+            p.setY(ceil((double)player.position().y() / blockSize) * blockSize);
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
         }
         else if(yddiff < 15 && offset.x() < 0)
         {
             QPoint p;
-            p.setX(player.x() + offset.x());
-            p.setY(player.y() / blockSize * blockSize);
+            p.setX(player.position().x() + offset.x());
+            p.setY(player.position().y() / blockSize * blockSize);
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
         }
         //move right smoothly
         if(yudiff < 15 && offset.x() > 0)
         {
             QPoint p;
-            p.setX(player.x() + offset.x());
-            p.setY(ceil((double)player.y() / blockSize) * blockSize);
+            p.setX(player.position().x() + offset.x());
+            p.setY(ceil((double)player.position().y() / blockSize) * blockSize);
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
         }
         else if(yddiff < 15 && offset.x() > 0)
         {
             QPoint p;
-            p.setX(player.x() + offset.x());
-            p.setY(player.y() / blockSize * blockSize);
+            p.setX(player.position().x() + offset.x());
+            p.setY(player.position().y() / blockSize * blockSize);
             if(collider.collide(blockSize,p) == nullptr)
             {
                 moveFlag = true;
-                player.pos() = p;
+                player.position() = p;
             }
         }
     }
     if(moveFlag)
     {
-        if(map.eatDot(transform(player,player.pos())))
+        if(map.eatDot(transform(player,player.position())))
         {
             static int i;
             qDebug() << "Eat a dot (" << ++i << ")";
@@ -254,5 +255,5 @@ void CGameWindow::drawCharacter(QPainter& painter)
     Character &player = game->player;
     PictureFactory &factory = game->factory;
     int blockSize = factory.blockSize();
-    painter.drawPixmap(player.x(),player.y(),blockSize,blockSize,factory.getPixmap(player));
+    painter.drawPixmap(player.position().x(),player.position().y(),blockSize,blockSize,factory.getPixmap(player));
 }

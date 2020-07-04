@@ -27,11 +27,9 @@ typedef enum
 class Character
 {
 public:
-    Character(User user,int x,int y);
-    QPoint&                     pos();
-    QPoint                      pos() const;
-    int                         x() const;
-    int                         y() const;
+    Character();
+    QPoint&                     position();
+    QPoint                      position() const;
     User                        user() const;
     Character&                  move(int xOffset,int yOffset);
     Character&                  move(const QPoint &offset);

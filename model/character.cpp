@@ -1,32 +1,25 @@
 ﻿#include "character.h"
 #include <QDebug>
-Character::Character(User u,int x,int y) :
-    m_pos(QPoint(x,y))
+
+Character::Character()
+    : m_pos(QPoint(0, 0))
 {
-   m_user   = u;
+   m_user   = U_Player;
    m_lookAt = LD_Right;
    m_state  = AS_1;
    lastDirection = LD_Right;
 }
-QPoint& Character::pos()
+
+QPoint& Character::position()
 {
     return m_pos;
 }
 
-QPoint Character::pos() const
+QPoint Character::position() const
 {
     return m_pos;
 }
 
-int Character::x() const
-{
-    return m_pos.x();
-}
-
-int Character::y() const
-{
-    return m_pos.y();
-}
 User Character::user() const
 {
     return m_user;
