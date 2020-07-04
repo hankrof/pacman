@@ -11,6 +11,7 @@ PROGRAM       = main
 .PHONY: clean
 all:
 	$(MAKE) -C ../
+	rm -f $(PREBUILT_OBJS)
 	cp ../*.o .
 	rm -f main.o
 	$(MAKE) $(PROGRAM)
