@@ -53,5 +53,9 @@ compile_commands.json
 
 *_qmlcache.qrc
 
+# main binary
+PacMan
+gtest/main
+
 # vim
 .clangd
